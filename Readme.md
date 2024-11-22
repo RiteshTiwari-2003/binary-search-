@@ -32,3 +32,5 @@ arr = [1, 2, 3, 4, 5]
 k = 4
 ans = minimiseMaxDistance(arr, k)
 print("The answer is:", ans)
+
+# YOU CAN DO THIS CODE USING PRIORITY QUEUE FOR BETTER OPTIMIZATION
