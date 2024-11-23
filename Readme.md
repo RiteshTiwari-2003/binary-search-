@@ -66,3 +66,91 @@ arr = [1, 2, 3, 4, 5]
 k = 4
 ans = minimiseMaxDistance(arr, k)
 print("The answer is:", ans)
+
+# median of two sorted array
+
+def median(a, b): # size of two given arrays:
+n1, n2 = len(a), len(b)
+
+    arr3 = []
+    # apply the merge step:
+    i, j = 0, 0
+    while i < n1 and j < n2:
+        if a[i] < b[j]:
+            arr3.append(a[i])
+            i += 1
+        else:
+            arr3.append(b[j])
+            j += 1
+
+    # copy the left-out elements:
+    arr3.extend(a[i:])
+    arr3.extend(b[j:])
+
+    # Find the median:
+    n = n1 + n2
+    if n % 2 == 1:
+        return float(arr3[n // 2])
+
+    median = (arr3[n // 2] + arr3[(n // 2) - 1]) / 2.0
+    return median
+
+if **name** == "**main**":
+a = [1, 4, 7, 10, 12]
+b = [2, 3, 6, 15]
+print("The median of two sorted arrays is", "{:.1f}".format(median(a, b)))
+
+approach 2
+
+def median(a, b): # size of two given arrays:
+n1, n2 = len(a), len(b)
+n = n1 + n2 # total size # required indices:
+ind2 = n // 2
+ind1 = ind2 - 1
+cnt = 0
+ind1el, ind2el = -1, -1
+
+    # apply the merge step:
+    i, j = 0, 0
+    while i < n1 and j < n2:
+        if a[i] < b[j]:
+            if cnt == ind1:
+                ind1el = a[i]
+            if cnt == ind2:
+                ind2el = a[i]
+            cnt += 1
+            i += 1
+        else:
+            if cnt == ind1:
+                ind1el = b[j]
+            if cnt == ind2:
+                ind2el = b[j]
+            cnt += 1
+            j += 1
+
+    # copy the left-out elements:
+    while i < n1:
+        if cnt == ind1:
+            ind1el = a[i]
+        if cnt == ind2:
+            ind2el = a[i]
+        cnt += 1
+        i += 1
+    while j < n2:
+        if cnt == ind1:
+            ind1el = b[j]
+        if cnt == ind2:
+            ind2el = b[j]
+        cnt += 1
+        j += 1
+
+    # Find the median:
+    if n % 2 == 1:
+        return float(ind2el)
+
+    return float(ind1el + ind2el) / 2.0
+
+if **name** == "**main**":
+a = [1, 4, 7, 10, 12]
+b = [2, 3, 6, 15]
+print("The median of two sorted arrays is", "{:.1f}".format(median(a, b)))
